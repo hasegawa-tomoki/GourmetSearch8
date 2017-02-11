@@ -1,5 +1,6 @@
 import UIKit
 import MapKit
+import Social
 
 class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   @IBOutlet weak var scrollView: UIScrollView!
@@ -10,6 +11,9 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePi
   @IBOutlet weak var map: MKMapView!
   @IBOutlet weak var favoriteIcon: UIImageView!
   @IBOutlet weak var favoriteLabel: UILabel!
+  @IBOutlet weak var line: UIButton!
+  @IBOutlet weak var twitter: UIButton!
+  @IBOutlet weak var facebook: UIButton!
   
   @IBOutlet weak var nameHeight: NSLayoutConstraint!
   @IBOutlet weak var addressContainerHeight: NSLayoutConstraint!
@@ -55,6 +59,19 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePi
     ipc.delegate = self
     // トリミングなどを行う
     ipc.allowsEditing = true
+    
+    // LINEの利用可能状態をチェック
+    if UIApplication.shared.canOpenURL(URL(string: "line://")!){
+      line.isEnabled = true
+    }
+    // Twitterの利用可能状態をチェック
+    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+      twitter.isEnabled = true
+    }
+    // Facebookの利用可能状態をチェック
+    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook){
+      facebook.isEnabled = true
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +122,29 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePi
   }
   
   // MARK: - アプリケーションロジック
+  func share(type: String){
+    guard let vc = SLComposeViewController(forServiceType: type) else {
+      return
+    }
+    if let name = shop.name {
+      vc.setInitialText(name + "\n")
+    }
+    
+    if let gid = shop.gid {
+      if ShopPhoto.sharedInstance.count(gid: gid) > 0 {
+        // 写真があれば追加する
+        vc.add(ShopPhoto.sharedInstance.image(gid: gid, index: 0))
+      }
+    }
+    
+    if let url = shop.url {
+      // URLを作って追加する
+      vc.add(URL(string: url))
+    }
+    
+    self.present(vc, animated: true, completion: nil)
+  }
+  
   func updateFavoriteButton(){
     guard let gid = shop.gid else {
       return
@@ -131,7 +171,42 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePi
   
   // MARK: - IBAction
   @IBAction func telTapped(_ sender: UIButton) {
-    print("telTapped")
+    guard let tel = shop.tel else {
+      return
+    }
+    guard let url = URL(string: "tel:\(tel)") else {
+      return
+    }
+    
+    if !UIApplication.shared.canOpenURL(url) {
+      let alert = UIAlertController(title: "電話をかけることができません",
+                                    message: "この端末には電話機能が搭載されていません。",
+                                    preferredStyle: .alert)
+      alert.addAction(
+        UIAlertAction(title: "OK", style: .default, handler: nil)
+      )
+      present(alert, animated: true, completion: nil)
+      return
+    }
+    
+    guard let name = shop.name else {
+      return
+    }
+    
+    let alert = UIAlertController(title: "電話", message: "\(name)に電話をかけます。", preferredStyle: .alert)
+    alert.addAction(
+      UIAlertAction(title: "電話をかける", style: .destructive, handler: {
+        action in
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        return
+      })
+    )
+    
+    alert.addAction(
+      UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+    )
+    
+    present(alert, animated: true, completion: nil)
   }
   
   @IBAction func addressTapped(_ sender: UIButton) {
@@ -179,5 +254,29 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePi
       })
     )
     present(alert, animated: true, completion: nil)
+  }
+  
+  @IBAction func lineTapped(_ sender: UIButton) {
+    var message = ""
+    
+    if let name = shop.name {
+      message += name + "\n"
+    }
+    
+    if let url = shop.url {
+      message += url + "\n"
+    }
+    
+    if let encoded = message.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+      if let uri = URL(string: "line://msg/text/" + encoded) {
+        UIApplication.shared.open(uri, options: [:], completionHandler: nil)
+      }
+    }
+  }
+  @IBAction func twitterTapped(_ sender: UIButton) {
+    share(type: SLServiceTypeTwitter)
+  }
+  @IBAction func facebookTapped(_ sender: UIButton) {
+    share(type: SLServiceTypeFacebook)
   }
 }

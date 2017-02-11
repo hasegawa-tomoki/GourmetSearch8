@@ -276,8 +276,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BL9-Zh-XGW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QqR-Do-1up">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QqR-Do-1up">
+                                        <rect key="frame" x="0.0" y="-300" width="375" height="900"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T3f-Mj-oQU">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -423,11 +423,60 @@
                                                     <constraint firstItem="Emy-Xr-bRJ" firstAttribute="centerY" secondItem="iHL-Oi-QXy" secondAttribute="centerY" id="pbU-zT-vWZ"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoh-af-hLN" userLabel="シェアボタンコンテナ">
+                                                <rect key="frame" x="8" y="590" width="359" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egm-zs-Tb7" userLabel="LINEボタン">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="Cck-C7-lps"/>
+                                                            <constraint firstAttribute="height" constant="50" id="ifh-WL-AQT"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="sns-line"/>
+                                                        <connections>
+                                                            <action selector="lineTapped:" destination="hcS-cC-hXB" eventType="touchUpInside" id="T3o-ZP-TOb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6b-iO-8zH" userLabel="Twitterボタン">
+                                                        <rect key="frame" x="58" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="24Q-RH-OuW"/>
+                                                            <constraint firstAttribute="height" constant="50" id="ItA-Ju-iMB"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="sns-twitter"/>
+                                                        <connections>
+                                                            <action selector="twitterTapped:" destination="hcS-cC-hXB" eventType="touchUpInside" id="eUA-UB-szO"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvq-fg-IXm" userLabel="Facebookボタン">
+                                                        <rect key="frame" x="116" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="9dS-S2-Oik"/>
+                                                            <constraint firstAttribute="height" constant="50" id="kQj-Sd-glb"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="sns-facebook"/>
+                                                        <connections>
+                                                            <action selector="facebookTapped:" destination="hcS-cC-hXB" eventType="touchUpInside" id="PD8-7j-Uv8"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="Z6b-iO-8zH" firstAttribute="centerY" secondItem="hoh-af-hLN" secondAttribute="centerY" id="11o-hE-elW"/>
+                                                    <constraint firstItem="egm-zs-Tb7" firstAttribute="leading" secondItem="hoh-af-hLN" secondAttribute="leading" id="4an-Ux-Q5j"/>
+                                                    <constraint firstItem="Fvq-fg-IXm" firstAttribute="centerY" secondItem="hoh-af-hLN" secondAttribute="centerY" id="Ck1-Bl-m3d"/>
+                                                    <constraint firstItem="egm-zs-Tb7" firstAttribute="centerY" secondItem="hoh-af-hLN" secondAttribute="centerY" id="XFs-hZ-5F6"/>
+                                                    <constraint firstAttribute="height" constant="50" id="gVs-px-8Pm"/>
+                                                    <constraint firstItem="Fvq-fg-IXm" firstAttribute="leading" secondItem="Z6b-iO-8zH" secondAttribute="trailing" constant="8" id="j5X-Rj-qZs"/>
+                                                    <constraint firstItem="Z6b-iO-8zH" firstAttribute="leading" secondItem="egm-zs-Tb7" secondAttribute="trailing" constant="8" id="qTU-2n-GYt"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="T3f-Mj-oQU" secondAttribute="trailing" id="2hK-N7-enA"/>
                                             <constraint firstAttribute="trailing" secondItem="MCA-hM-NgK" secondAttribute="trailing" constant="8" id="4WF-yW-0ku"/>
+                                            <constraint firstAttribute="trailing" secondItem="hoh-af-hLN" secondAttribute="trailing" constant="8" id="9eG-DG-XZ1"/>
                                             <constraint firstItem="fQj-mB-2Ap" firstAttribute="top" secondItem="7Ab-fZ-m1g" secondAttribute="bottom" id="Cge-FZ-N5e"/>
                                             <constraint firstItem="T3f-Mj-oQU" firstAttribute="leading" secondItem="QqR-Do-1up" secondAttribute="leading" id="EGD-1m-agD"/>
                                             <constraint firstAttribute="trailing" secondItem="iHL-Oi-QXy" secondAttribute="trailing" id="FzX-hF-6to"/>
@@ -436,12 +485,14 @@
                                             <constraint firstItem="7Ab-fZ-m1g" firstAttribute="top" secondItem="MCA-hM-NgK" secondAttribute="bottom" constant="8" id="Pch-Pd-NzY"/>
                                             <constraint firstItem="MCA-hM-NgK" firstAttribute="top" secondItem="T3f-Mj-oQU" secondAttribute="bottom" constant="10" id="Sgp-0W-cmy"/>
                                             <constraint firstItem="iHL-Oi-QXy" firstAttribute="top" secondItem="RKR-U5-dRU" secondAttribute="bottom" constant="20" id="XZ5-2a-eoL"/>
+                                            <constraint firstAttribute="bottom" secondItem="hoh-af-hLN" secondAttribute="bottom" constant="30" id="Zcz-9v-GPZ"/>
                                             <constraint firstItem="MCA-hM-NgK" firstAttribute="leading" secondItem="QqR-Do-1up" secondAttribute="leading" constant="8" id="b03-qc-pab"/>
                                             <constraint firstItem="7Ab-fZ-m1g" firstAttribute="leading" secondItem="QqR-Do-1up" secondAttribute="leading" id="baS-OZ-1BZ"/>
                                             <constraint firstAttribute="trailing" secondItem="RKR-U5-dRU" secondAttribute="trailing" id="hse-Gx-a4n"/>
                                             <constraint firstAttribute="trailing" secondItem="fQj-mB-2Ap" secondAttribute="trailing" id="iRd-qY-Wdk"/>
                                             <constraint firstItem="RKR-U5-dRU" firstAttribute="top" secondItem="fQj-mB-2Ap" secondAttribute="bottom" constant="20" id="kft-cJ-Pee"/>
-                                            <constraint firstAttribute="bottom" secondItem="iHL-Oi-QXy" secondAttribute="bottom" constant="80" id="v5P-YT-9dH"/>
+                                            <constraint firstItem="hoh-af-hLN" firstAttribute="leading" secondItem="QqR-Do-1up" secondAttribute="leading" constant="8" id="ndM-oM-yAz"/>
+                                            <constraint firstItem="hoh-af-hLN" firstAttribute="top" secondItem="iHL-Oi-QXy" secondAttribute="bottom" constant="30" id="o2M-zj-8dd"/>
                                             <constraint firstItem="fQj-mB-2Ap" firstAttribute="leading" secondItem="QqR-Do-1up" secondAttribute="leading" id="vyy-dR-xnd"/>
                                             <constraint firstAttribute="trailing" secondItem="7Ab-fZ-m1g" secondAttribute="trailing" id="xa1-Vh-AE8"/>
                                             <constraint firstItem="T3f-Mj-oQU" firstAttribute="top" secondItem="QqR-Do-1up" secondAttribute="top" id="xm9-pm-o0V"/>
@@ -475,14 +526,17 @@
                     <connections>
                         <outlet property="address" destination="IH9-qA-t8d" id="cYG-B3-ZwK"/>
                         <outlet property="addressContainerHeight" destination="oo7-Rq-UTZ" id="zpB-Os-Yf1"/>
+                        <outlet property="facebook" destination="Fvq-fg-IXm" id="sfg-cc-QjX"/>
                         <outlet property="favoriteIcon" destination="Emy-Xr-bRJ" id="ou2-Ml-b92"/>
                         <outlet property="favoriteLabel" destination="a3s-Gr-lqR" id="idO-XZ-rXl"/>
+                        <outlet property="line" destination="egm-zs-Tb7" id="of9-IR-J1X"/>
                         <outlet property="map" destination="RKR-U5-dRU" id="wqz-0T-KOg"/>
                         <outlet property="name" destination="MCA-hM-NgK" id="3cF-TH-10o"/>
                         <outlet property="nameHeight" destination="xKv-H8-8Cs" id="HQp-Ah-DEJ"/>
                         <outlet property="photo" destination="T3f-Mj-oQU" id="zEJ-V0-4BG"/>
                         <outlet property="scrollView" destination="BL9-Zh-XGW" id="pay-ba-fvw"/>
                         <outlet property="tel" destination="uzO-cp-FBM" id="Xo6-Wl-7Dq"/>
+                        <outlet property="twitter" destination="Z6b-iO-8zH" id="Wjk-zY-YM5"/>
                         <segue destination="LGl-8N-5sm" kind="show" identifier="PushMapDetail" id="Iso-B9-o3K"/>
                     </connections>
                 </viewController>
@@ -691,6 +745,9 @@
     </scenes>
     <resources>
         <image name="blank" width="1" height="1"/>
+        <image name="sns-facebook" width="50" height="50"/>
+        <image name="sns-line" width="80" height="80"/>
+        <image name="sns-twitter" width="200" height="200"/>
         <image name="star-off" width="40" height="40"/>
         <image name="tabbar-favorite" width="30" height="30"/>
         <image name="tabbar-photo" width="30" height="30"/>
