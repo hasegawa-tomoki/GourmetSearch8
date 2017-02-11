@@ -1,0 +1,6 @@
+framework module Pods_GourmetSearch {
+  umbrella header "Pods-GourmetSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}
