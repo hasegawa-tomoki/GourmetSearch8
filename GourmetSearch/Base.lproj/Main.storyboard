@@ -464,6 +464,9 @@
                             <constraint firstItem="BL9-Zh-XGW" firstAttribute="top" secondItem="PKJ-35-yrJ" secondAttribute="top" id="wyI-BW-RN7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="L5H-Fy-FkN">
+                        <barButtonItem key="rightBarButtonItem" title="写真を追加" id="2jX-wb-cNq"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="address" destination="IH9-qA-t8d" id="cYG-B3-ZwK"/>
                         <outlet property="addressContainerHeight" destination="oo7-Rq-UTZ" id="zpB-Os-Yf1"/>

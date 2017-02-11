@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
+class ShopDetailViewController: UIViewController, UIScrollViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var photo: UIImageView!
   @IBOutlet weak var name: UILabel!
@@ -15,6 +15,7 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
   @IBOutlet weak var addressContainerHeight: NSLayoutConstraint!
   
   var shop = Shop()
+  let ipc = UIImagePickerController()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,6 +49,12 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
     
     // お気に入り状態をボタンラベルに反映
     updateFavoriteButton()
+    
+    // UIImagePickerControllerDelegateの設定
+    // Delegate設定
+    ipc.delegate = self
+    // トリミングなどを行う
+    ipc.allowsEditing = true
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +81,18 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
     addressContainerHeight.constant = addressFrame.height
     
     view.layoutIfNeeded()
+  }
+  
+  // MARK: - UIImagePickerControllerDelegate
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    ipc.dismiss(animated: true, completion: nil)
+  }
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+      ShopPhoto.sharedInstance.append(shop: shop, image: image)
+    }
+    
+    ipc.dismiss(animated: true, completion: nil)
   }
   
   // MARK: - UIScrollViewDelegate
@@ -114,9 +133,11 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
   @IBAction func telTapped(_ sender: UIButton) {
     print("telTapped")
   }
+  
   @IBAction func addressTapped(_ sender: UIButton) {
     performSegue(withIdentifier: "PushMapDetail", sender: nil)
   }
+  
   @IBAction func favoriteTapped(_ sender: UIButton) {
     guard let gid = shop.gid else {
       return
@@ -124,5 +145,39 @@ class ShopDetailViewController: UIViewController, UIScrollViewDelegate {
     // お気に入りセル: お気に入り状態を変更する
     Favorite.toggle(gid)
     updateFavoriteButton()
+  }
+  
+  @IBAction func addPhotoTapped(_ sender: UIBarButtonItem) {
+    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    
+    // カメラが使えるか確認して使えるなら「写真を撮る」選択肢を表示
+    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+      alert.addAction(
+        UIAlertAction(title: "写真を撮る", style: .default, handler: {
+          action in
+          // ソースはカメラ
+          self.ipc.sourceType = .camera
+          // カメラUIを起動
+          self.present(self.ipc, animated: true, completion: nil)
+        })
+      )
+    }
+    
+    // 「写真を選択」ボタンはいつでも使える
+    alert.addAction(
+      UIAlertAction(title: "写真を選択", style: .default, handler: {
+        action in
+        // ソースは写真選択
+        self.ipc.sourceType = .photoLibrary
+        // 写真選択UIを起動
+        self.present(self.ipc, animated: true, completion: nil)
+      })
+    )
+    alert.addAction(
+      UIAlertAction(title: "キャンセル", style: .cancel, handler: {
+        action in
+      })
+    )
+    present(alert, animated: true, completion: nil)
   }
 }
