@@ -5,9 +5,17 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
   
   var yls: YahooLocalSearch = YahooLocalSearch()
   var loadDataObserver: NSObjectProtocol?
+  var refreshObserver: NSObjectProtocol?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    // Pull to Refreshコントロール初期化
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self,
+      action: #selector(ShopListViewController.onRefresh(_:)),
+      for: .valueChanged)
+    self.tableView.addSubview(refreshControl)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -80,11 +88,43 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         // rowが店舗数以下なら店舗セルを返す
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListItem") as! ShopListItemTableViewCell
         cell.shop = yls.shops[indexPath.row]
+        
+        // まだ残りがあって、現在の列の下の店舗が3つ以下になったら追加取得
+        if yls.shops.count < yls.total {
+          if yls.shops.count - indexPath.row <= 4 {
+            yls.loadData()
+          }
+        }
+        
         return cell
       }
     }
     // 通常はここに到達しない
     return UITableViewCell()
   }
+  
+  // MARK: - アプリケーションロジック
+  // Pull to Refresh
+  func onRefresh(_ refreshControl: UIRefreshControl){
+    // UIRefreshControlを読込中状態にする
+    refreshControl.beginRefreshing()
+    
+    // 終了通知を受信したらUIRefreshControlを停止する
+    refreshObserver = NotificationCenter.default.addObserver(
+      forName: .apiLoadComplete,
+      object: nil,
+      queue: nil,
+      using: {
+        notification in
+        // 通知の待ち受けを終了
+        NotificationCenter.default.removeObserver(self.refreshObserver!)
+        // UITefreshControlを停止する
+        refreshControl.endRefreshing()
+    })
+    
+    // 再取得
+    yls.loadData(reset: true)
+  }
+
 }
 

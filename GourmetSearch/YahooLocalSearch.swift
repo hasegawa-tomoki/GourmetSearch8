@@ -115,6 +115,8 @@ public class YahooLocalSearch {
   let perPage = 10
   // 読込済の店舗
   public var shops = [Shop]()
+  // trueだと読込中
+  var loading = false
   // 全何件か
   public var total = 0
   
@@ -136,11 +138,18 @@ public class YahooLocalSearch {
   // APIからデータを読み込む。
   // reset = trueならデータを捨てて最初から読み込む
   public func loadData(reset: Bool = false) {
+    // 読込中なら何もせず帰る
+    if loading { return }
+    
     // reset = true なら今までの結果を捨てる
     if reset {
       shops = []
       total = 0
     }
+
+    // API実行中フラグをON
+    loading = true
+    
     // 条件ディクショナリを取得
     var params = condition.queryParams
     
@@ -157,6 +166,7 @@ public class YahooLocalSearch {
     let request = Alamofire.request(apiUrl, method: .get, parameters: params).response {
       // リクエストが完了した時に実行されるクロージャ
       response in
+      
       var json = JSON.null;
       if response.error == nil && response.data != nil {
         json = SwiftyJSON.JSON(data: response.data!)
@@ -164,6 +174,8 @@ public class YahooLocalSearch {
       
       // エラーがあれば終了
       if response.error != nil {
+        // API実行中フラグをOFF
+        self.loading = false
         // API実行終了を通知する
         var message = "Unknown error."
         if let error = response.error {
@@ -232,6 +244,8 @@ public class YahooLocalSearch {
         self.total = 0
       }
       
+      // API実行中フラグをOFF
+      self.loading = false
       // API実行終了を通知する
       NotificationCenter.default.post(name: .apiLoadComplete, object: nil)
     }
