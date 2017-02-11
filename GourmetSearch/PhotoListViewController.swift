@@ -74,4 +74,23 @@ class PhotoListViewController: UIViewController, UICollectionViewDelegate, UICol
     
     return UICollectionReusableView()
   }
+  
+  // MARK: - UICollectionViewDelegate
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "PushPhotoDetail", sender: indexPath)
+  }
+  
+  // MARK: - Navigation
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "PushPhotoDetail" {
+      let vc = segue.destination as! PhotoDetailViewController
+      if let indexPath = sender as? IndexPath {
+        let gid = ShopPhoto.sharedInstance.gids[indexPath.section]
+        let image = ShopPhoto.sharedInstance.image(gid: gid, index: indexPath.row)
+        vc.image = image
+      }
+    }
+  }
 }
