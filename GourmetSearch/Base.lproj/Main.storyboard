@@ -127,6 +127,7 @@
                     <connections>
                         <segue destination="CFr-ga-sur" kind="relationship" relationship="viewControllers" id="lal-ps-ORR"/>
                         <segue destination="JTl-XB-1VJ" kind="relationship" relationship="viewControllers" id="gWT-jN-qeF"/>
+                        <segue destination="7c3-jd-yq1" kind="relationship" relationship="viewControllers" id="OUB-hx-TSb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obU-aG-bIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -465,7 +466,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="L5H-Fy-FkN">
-                        <barButtonItem key="rightBarButtonItem" title="写真を追加" id="2jX-wb-cNq"/>
+                        <barButtonItem key="rightBarButtonItem" title="写真を追加" id="2jX-wb-cNq">
+                            <connections>
+                                <action selector="addPhotoTapped:" destination="hcS-cC-hXB" id="Wfp-9N-Iga"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="address" destination="IH9-qA-t8d" id="cYG-B3-ZwK"/>
@@ -484,6 +489,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGr-Rn-e3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1789.5999999999999" y="-556.37181409295351"/>
+        </scene>
+        <!--写真-->
+        <scene sceneID="9UC-HH-F3i">
+            <objects>
+                <navigationController id="7c3-jd-yq1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="写真" image="tabbar-photo" id="3OY-8e-qhz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kYP-a2-RNt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xYq-qf-CZd" kind="relationship" relationship="rootViewController" id="uHr-VQ-EWd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xXC-Ai-akG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-615" y="842"/>
+        </scene>
+        <!--写真一覧-->
+        <scene sceneID="44O-eT-EAu">
+            <objects>
+                <viewController id="xYq-qf-CZd" customClass="PhotoListViewController" customModule="GourmetSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W2h-ls-8lv"/>
+                        <viewControllerLayoutGuide type="bottom" id="l3a-oE-gt1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5TE-Ob-Cv0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xxi-qo-Xnn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="npL-u3-bmV">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoListItem" id="1a6-gY-ood" customClass="PhotoListItemCollectionViewCell" customModule="GourmetSearch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GuE-Ji-POU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="GuE-Ji-POU" firstAttribute="leading" secondItem="1a6-gY-ood" secondAttribute="leading" id="Kkc-6D-73Z"/>
+                                            <constraint firstItem="GuE-Ji-POU" firstAttribute="top" secondItem="1a6-gY-ood" secondAttribute="top" id="g8i-qd-r1x"/>
+                                            <constraint firstAttribute="trailing" secondItem="GuE-Ji-POU" secondAttribute="trailing" id="hYv-KH-g0o"/>
+                                            <constraint firstAttribute="bottom" secondItem="GuE-Ji-POU" secondAttribute="bottom" id="qHa-fo-n0i"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photo" destination="GuE-Ji-POU" id="eBP-mz-k6q"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoListHeader" id="I5H-SQ-cIZ" customClass="PhotoListItemCollectionViewHeader" customModule="GourmetSearch" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2a-p9-whp">
+                                            <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="gIJ-ZQ-wfg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="v2a-p9-whp" secondAttribute="trailing" constant="8" id="475-4v-ea3"/>
+                                        <constraint firstItem="v2a-p9-whp" firstAttribute="leading" secondItem="I5H-SQ-cIZ" secondAttribute="leading" constant="8" id="5qM-7g-aWn"/>
+                                        <constraint firstItem="v2a-p9-whp" firstAttribute="centerY" secondItem="I5H-SQ-cIZ" secondAttribute="centerY" id="hbD-xW-1LL"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="title" destination="v2a-p9-whp" id="W1i-5d-1PY"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="xYq-qf-CZd" id="5F3-vh-mWb"/>
+                                    <outlet property="delegate" destination="xYq-qf-CZd" id="bDA-7F-dBm"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xxi-qo-Xnn" firstAttribute="leading" secondItem="5TE-Ob-Cv0" secondAttribute="leading" id="PXf-l4-luX"/>
+                            <constraint firstItem="xxi-qo-Xnn" firstAttribute="top" secondItem="5TE-Ob-Cv0" secondAttribute="top" id="fz5-q7-xgm"/>
+                            <constraint firstItem="l3a-oE-gt1" firstAttribute="top" secondItem="xxi-qo-Xnn" secondAttribute="bottom" id="grB-iW-qRK"/>
+                            <constraint firstAttribute="trailing" secondItem="xxi-qo-Xnn" secondAttribute="trailing" id="zaR-uR-sd3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="写真一覧" id="LtH-Ar-iNW"/>
+                    <connections>
+                        <outlet property="collectionView" destination="xxi-qo-Xnn" id="zfS-dS-ry2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NkL-wh-HJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="177" y="842"/>
         </scene>
         <!--Title-->
         <scene sceneID="ORd-Ud-hRx">
@@ -530,6 +643,7 @@
         <image name="blank" width="1" height="1"/>
         <image name="star-off" width="40" height="40"/>
         <image name="tabbar-favorite" width="30" height="30"/>
+        <image name="tabbar-photo" width="30" height="30"/>
         <image name="tabbar-search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
