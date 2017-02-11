@@ -58,7 +58,9 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
       }
     )
     
-    yls.loadData(reset: true)
+    if yls.shops.count == 0 {
+      yls.loadData(reset: true)
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -72,7 +74,15 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
 
   // MARK: - UITableViewDelegate
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    // セルの高さを返す
     return 100
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // セルの選択状態を解除する
+    tableView.deselectRow(at: indexPath, animated: true)
+    // Segueを実行する
+    performSegue(withIdentifier: "PushShopDetail", sender: indexPath)
   }
   
   // MARK: - UITableViewDataSource
@@ -129,5 +139,14 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     yls.loadData(reset: true)
   }
 
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "PushShopDetail" {
+      let vc = segue.destination as! ShopDetailViewController
+      if let indexPath = sender as? IndexPath {
+        vc.shop = yls.shops[indexPath.row]
+      }
+    }
+  }
 }
 
