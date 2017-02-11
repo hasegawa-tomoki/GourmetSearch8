@@ -250,5 +250,21 @@ public class YahooLocalSearch {
       NotificationCenter.default.post(name: .apiLoadComplete, object: nil)
     }
   }
+  
+  func sortByGid(){
+    var newShops = [Shop]()
+    // 検索条件の店舗ID（Gid）一覧文字列を「,」で分割して配列に戻す
+    if let gids = self.condition.gid?.components(separatedBy: ",") {
+      // 店舗ID（Gid）配列でループしてその順番に配列を並び替える
+      for gid in gids {
+        let filtered = shops.filter{ $0.gid == gid }
+        if filtered.count > 0 {
+          newShops.append(filtered[0])
+        }
+      }
+    }
+    // 新しい配列を返す
+    shops = newShops
+  }
 }
 

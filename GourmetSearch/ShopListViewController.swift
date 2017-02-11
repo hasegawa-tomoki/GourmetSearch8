@@ -13,8 +13,8 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     // Pull to Refreshコントロール初期化
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self,
-      action: #selector(ShopListViewController.onRefresh(_:)),
-      for: .valueChanged)
+                             action: #selector(ShopListViewController.onRefresh(_:)),
+                             for: .valueChanged)
     self.tableView.addSubview(refreshControl)
   }
   
@@ -22,10 +22,10 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     super.viewWillAppear(animated)
     
     /*
-    var qc = QueryCondition()
-    qc.query = "ハンバーガー"
-    
-    yls = YahooLocalSearch(condition: qc)
+     var qc = QueryCondition()
+     qc.query = "ハンバーガー"
+     
+     yls = YahooLocalSearch(condition: qc)
      */
     
     // 読込完了通知を受信した時の処理
@@ -35,6 +35,11 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
       queue: nil,
       using: {
         (notification) in
+        
+        // 店舗ID（Gid）が指定されたいたらその順番に並べ替える
+        if self.yls.condition.gid != nil {
+          self.yls.sortByGid()
+        }
         
         self.tableView.reloadData()
         
@@ -55,11 +60,21 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
             }
           }
         }
-      }
+    }
     )
     
     if yls.shops.count == 0 {
-      yls.loadData(reset: true)
+      if self.navigationController is FavoriteNavigationController {
+        // お気に入り: お気に入りから検索条件を作って検索
+        loadFavorites()
+        // ナビゲーションバータイトル設定
+        self.navigationItem.title = "お気に入り"
+      } else {
+        // 検索: 設定された検索条件から検索
+        yls.loadData(reset: true)
+        // ナビゲーションバータイトル設定
+        self.navigationItem.title = "店舗一覧"
+      }
     }
   }
   
@@ -71,7 +86,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-
+  
   // MARK: - UITableViewDelegate
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     // セルの高さを返す
@@ -117,6 +132,27 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   // MARK: - アプリケーションロジック
+  
+  func loadFavorites(){
+    // お気に入りをUser Defaultsから読み込む
+    Favorite.load()
+    
+    // お気に入りがあれば店舗ID（Gid）一覧を作成して検索を実行する
+    if Favorite.favorites.count > 0 {
+      // お気に入り一覧を表現する検索条件オブジェクト
+      var condition = QueryCondition()
+      // favoritesプロパティの配列の中身を「,」で結合して文字列にする
+      condition.gid = Favorite.favorites.joined(separator: ",")
+      
+      // 検索条件を設定して検索実行
+      yls.condition = condition
+      yls.loadData(reset: true)
+    } else {
+      // お気に入りがなければ検索を実行せずAPI読込完了通知
+      NotificationCenter.default.post(name: .apiLoadComplete, object: nil)
+    }
+  }
+  
   // Pull to Refresh
   func onRefresh(_ refreshControl: UIRefreshControl){
     // UIRefreshControlを読込中状態にする
@@ -135,10 +171,15 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     })
     
-    // 再取得
-    yls.loadData(reset: true)
+    if self.navigationController is FavoriteNavigationController {
+      // お気に入り: User Defaultsからお気に入り一覧を再取得してAPI実行する
+      loadFavorites()
+    } else {
+      // 検索: そのまま再取得する
+      yls.loadData(reset: true)
+    }
   }
-
+  
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "PushShopDetail" {
