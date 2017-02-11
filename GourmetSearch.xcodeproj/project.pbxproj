@@ -22,11 +22,15 @@
 		E21CA8481E4F764500951815 /* PhotoListItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8471E4F764500951815 /* PhotoListItemCollectionViewCell.swift */; };
 		E21CA84A1E4F766500951815 /* PhotoListItemCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8491E4F766500951815 /* PhotoListItemCollectionViewHeader.swift */; };
 		E21CA84C1E4F7C5300951815 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA84B1E4F7C5300951815 /* PhotoDetailViewController.swift */; };
+		E21CA84E1E4F914D00951815 /* Licenses.plist in Resources */ = {isa = PBXBuildFile; fileRef = E21CA84D1E4F914D00951815 /* Licenses.plist */; };
+		E21CA8511E4F950D00951815 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8501E4F950D00951815 /* AboutViewController.swift */; };
+		E21CA8531E4F95F200951815 /* LicenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8521E4F95F200951815 /* LicenseListViewController.swift */; };
 		E26FF44F1E4EC0F800CD4E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FF44E1E4EC0F800CD4E50 /* AppDelegate.swift */; };
 		E26FF4511E4EC0F800CD4E50 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FF4501E4EC0F800CD4E50 /* ShopListViewController.swift */; };
 		E26FF4541E4EC0F800CD4E50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26FF4521E4EC0F800CD4E50 /* Main.storyboard */; };
 		E26FF4561E4EC0F800CD4E50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26FF4551E4EC0F800CD4E50 /* Assets.xcassets */; };
 		E26FF4591E4EC0F800CD4E50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26FF4571E4EC0F800CD4E50 /* LaunchScreen.storyboard */; };
+		E2C5BBE71E4F97FA00AC73E1 /* LicenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C5BBE61E4F97FA00AC73E1 /* LicenseDetailViewController.swift */; };
 		E2F83AA81E4EEF5E009C51AF /* ShopListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F83AA71E4EEF5E009C51AF /* ShopListItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +51,9 @@
 		E21CA8471E4F764500951815 /* PhotoListItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoListItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E21CA8491E4F766500951815 /* PhotoListItemCollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoListItemCollectionViewHeader.swift; sourceTree = "<group>"; };
 		E21CA84B1E4F7C5300951815 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		E21CA84D1E4F914D00951815 /* Licenses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Licenses.plist; sourceTree = "<group>"; };
+		E21CA8501E4F950D00951815 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		E21CA8521E4F95F200951815 /* LicenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseListViewController.swift; sourceTree = "<group>"; };
 		E240FB731E4EC5B7002CEB42 /* GourmetSearch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GourmetSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E240FB771E4EC6C2002CEB42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E26FF44B1E4EC0F800CD4E50 /* GourmetSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GourmetSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +63,7 @@
 		E26FF4551E4EC0F800CD4E50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26FF4581E4EC0F800CD4E50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E26FF45A1E4EC0F800CD4E50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2C5BBE61E4F97FA00AC73E1 /* LicenseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseDetailViewController.swift; sourceTree = "<group>"; };
 		E2F83AA71E4EEF5E009C51AF /* ShopListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListItemTableViewCell.swift; sourceTree = "<group>"; };
 		E67087951C7677953B486945 /* Pods_GourmetSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GourmetSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +119,16 @@
 			name = PhotoList;
 			sourceTree = "<group>";
 		};
+		E21CA84F1E4F94F100951815 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				E21CA8501E4F950D00951815 /* AboutViewController.swift */,
+				E21CA8521E4F95F200951815 /* LicenseListViewController.swift */,
+				E2C5BBE61E4F97FA00AC73E1 /* LicenseDetailViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		E26FF4421E4EC0F800CD4E50 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +151,7 @@
 		E26FF44D1E4EC0F800CD4E50 /* GourmetSearch */ = {
 			isa = PBXGroup;
 			children = (
+				E21CA84F1E4F94F100951815 /* About */,
 				E21CA8441E4F760E00951815 /* PhotoList */,
 				E21CA8391E4F4D9900951815 /* Tabs */,
 				E21CA82E1E4EF93300951815 /* Common */,
@@ -142,6 +161,7 @@
 				E26FF4551E4EC0F800CD4E50 /* Assets.xcassets */,
 				E26FF4571E4EC0F800CD4E50 /* LaunchScreen.storyboard */,
 				E26FF45A1E4EC0F800CD4E50 /* Info.plist */,
+				E21CA84D1E4F914D00951815 /* Licenses.plist */,
 			);
 			path = GourmetSearch;
 			sourceTree = "<group>";
@@ -233,6 +253,7 @@
 			files = (
 				E26FF4591E4EC0F800CD4E50 /* LaunchScreen.storyboard in Resources */,
 				E26FF4561E4EC0F800CD4E50 /* Assets.xcassets in Resources */,
+				E21CA84E1E4F914D00951815 /* Licenses.plist in Resources */,
 				E26FF4541E4EC0F800CD4E50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,11 +325,14 @@
 				E21CA84C1E4F7C5300951815 /* PhotoDetailViewController.swift in Sources */,
 				E21CA83D1E4F4DC400951815 /* FavoriteNavigationController.swift in Sources */,
 				E21CA8321E4F22B700951815 /* SearchTopTableViewController.swift in Sources */,
+				E21CA8511E4F950D00951815 /* AboutViewController.swift in Sources */,
 				E21CA8411E4F58D200951815 /* LocationService.swift in Sources */,
 				E21CA8481E4F764500951815 /* PhotoListItemCollectionViewCell.swift in Sources */,
 				E21CA8461E4F762700951815 /* PhotoListViewController.swift in Sources */,
 				E21CA8431E4F654C00951815 /* ShopPhoto.swift in Sources */,
 				E21CA83B1E4F4DB100951815 /* SearchNavigationController.swift in Sources */,
+				E21CA8531E4F95F200951815 /* LicenseListViewController.swift in Sources */,
+				E2C5BBE71E4F97FA00AC73E1 /* LicenseDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
