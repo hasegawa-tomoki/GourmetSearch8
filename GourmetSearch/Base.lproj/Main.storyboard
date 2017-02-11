@@ -242,7 +242,13 @@
                             <constraint firstItem="gL4-vI-FTD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rw6-nT-bYA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6DN-HT-BJM"/>
+                    <navigationItem key="navigationItem" id="6DN-HT-BJM">
+                        <barButtonItem key="rightBarButtonItem" title="編集" id="fQc-Sg-Jk0">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="BYZ-38-t0r" id="bYV-lY-tkX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="gL4-vI-FTD" id="YRg-Be-zpx"/>
                         <segue destination="hcS-cC-hXB" kind="show" identifier="PushShopDetail" id="NIF-p9-ZjY"/>
