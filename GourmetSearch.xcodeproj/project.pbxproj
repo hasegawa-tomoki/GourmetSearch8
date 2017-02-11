@@ -12,6 +12,7 @@
 		E21CA8321E4F22B700951815 /* SearchTopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8311E4F22B700951815 /* SearchTopTableViewController.swift */; };
 		E21CA8341E4F23D600951815 /* FreewordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8331E4F23D600951815 /* FreewordTableViewCell.swift */; };
 		E21CA8361E4F344B00951815 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8351E4F344B00951815 /* ShopDetailViewController.swift */; };
+		E21CA8381E4F460300951815 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CA8371E4F460300951815 /* Favorite.swift */; };
 		E26FF44F1E4EC0F800CD4E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FF44E1E4EC0F800CD4E50 /* AppDelegate.swift */; };
 		E26FF4511E4EC0F800CD4E50 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FF4501E4EC0F800CD4E50 /* ShopListViewController.swift */; };
 		E26FF4541E4EC0F800CD4E50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26FF4521E4EC0F800CD4E50 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		E21CA8311E4F22B700951815 /* SearchTopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTopTableViewController.swift; sourceTree = "<group>"; };
 		E21CA8331E4F23D600951815 /* FreewordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreewordTableViewCell.swift; sourceTree = "<group>"; };
 		E21CA8351E4F344B00951815 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		E21CA8371E4F460300951815 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E240FB731E4EC5B7002CEB42 /* GourmetSearch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GourmetSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E240FB771E4EC6C2002CEB42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E26FF44B1E4EC0F800CD4E50 /* GourmetSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GourmetSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				E21CA82F1E4EF94E00951815 /* YahooLocalSearch.swift */,
+				E21CA8371E4F460300951815 /* Favorite.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F83AA81E4EEF5E009C51AF /* ShopListItemTableViewCell.swift in Sources */,
+				E21CA8381E4F460300951815 /* Favorite.swift in Sources */,
 				E26FF4511E4EC0F800CD4E50 /* ShopListViewController.swift in Sources */,
 				E21CA8301E4EF94E00951815 /* YahooLocalSearch.swift in Sources */,
 				E21CA8341E4F23D600951815 /* FreewordTableViewCell.swift in Sources */,
