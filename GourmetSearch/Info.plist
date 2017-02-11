@@ -8,6 +8,26 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>tenpo.west.edge.storage-yahoo.jp</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>uds.gnst.jp</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>locoplace.c.yimg.jp</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>mr.gnavi.co.jp</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>search.olp.yahooapis.jp</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

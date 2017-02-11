@@ -24,7 +24,9 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
       queue: nil,
       using: {
         (notification) in
-        print("APIリクエスト完了")
+        
+        self.tableView.reloadData()
+        
         // エラーがあればダイアログを開く
         if notification.userInfo != nil {
           if let userInfo = notification.userInfo as? [String: String?] {
@@ -61,18 +63,27 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
   }
+  
   // MARK: - UITableViewDataSource
-  func tableView(_ tableView: UITableView,
-                 numberOfRowsInSection section: Int) -> Int {
-    return 20
-  }
-  func tableView(_ tableView: UITableView,
-                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.section == 0 {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListItem") as! ShopListItemTableViewCell
-      cell.name.text = "\(indexPath.row)"
-      return cell
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      // セルの数は店舗数
+      return yls.shops.count
     }
+    // 通常はここに到達しない
+    return 0
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.section == 0 {
+      if indexPath.row < yls.shops.count {
+        // rowが店舗数以下なら店舗セルを返す
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListItem") as! ShopListItemTableViewCell
+        cell.shop = yls.shops[indexPath.row]
+        return cell
+      }
+    }
+    // 通常はここに到達しない
     return UITableViewCell()
   }
 }
